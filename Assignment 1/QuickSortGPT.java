@@ -1,5 +1,9 @@
-public final class QuickSortGPT<T extends Comparable<T>> implements Sorter<T> {
-	
+public final class QuickSortGPT<T extends Comparable<T>> extends Sorter<T> {
+
+    QuickSortGPT () {
+        this.name = "QuickSortGPT";
+    }
+
 	public void sort(final T[] items) {
 		if (items == null || items.length == 0) {
             return;

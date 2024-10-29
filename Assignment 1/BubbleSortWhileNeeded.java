@@ -1,4 +1,8 @@
-public final class BubbleSortWhileNeeded<T extends Comparable<T>> implements Sorter<T> {
+public final class BubbleSortWhileNeeded<T extends Comparable<T>> extends Sorter<T> {
+
+	BubbleSortWhileNeeded() {
+		this.name = "BubbleSortWhileNeeded";
+	}
 
 	public void sort(final T[] items) {
 		int n = items.length;
