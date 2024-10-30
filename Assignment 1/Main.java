@@ -6,7 +6,7 @@ import java.util.Vector;
  */
 public class Main {
 
-    private static void createIntegerData () {
+    private static void createIntegerData() {
         // Initializing generic auxiliary variables
         Random rand = new Random();
 
@@ -36,7 +36,8 @@ public class Main {
         };
 
         // Creating the Data Generator of type Integer
-        DataGenerator<Integer> integerGenerator = new DataGenerator<>(integersVectorInitializer, integerArrayInitializer);
+        DataGenerator<Integer> integerGenerator =
+                new DataGenerator<>(integersVectorInitializer, integerArrayInitializer);
 
         // Initializing the vector of sorters
         Vector<Sorter> sorters = new Vector<>(4);
@@ -55,47 +56,53 @@ public class Main {
         sorters.add(integerSelectionSortGPT);
 
         // Initializing a vector containing the mean execution time for each sorter for each data size
-        Vector<int[]> executionTimes = new Vector<>();
+        Vector<long[]> executionTimes = new Vector<>(4);
 
-        // Sorting
-        for(int i = 0; i < sorters.size(); i++){
+        // Auxiliary data
+        int sortersAmount = sorters.size();
+        int arraysAmount = integerGenerator.getArrays().size();
+        int maxIterations = 10;
+
+        // Iterating all the sorters algorithms
+        for(int i = 0; i < sortersAmount; i++){
             // Getting the current sorter class
             Sorter current_sorter = sorters.get(i);
-            // Initializing the containers of means
-            int maxIterations = 10;
-            int[] meanExecutionTime = new int[sorters.size()];
             // Printing the sorter name
-            System.out.println(current_sorter.getName());
+            System.out.println();
+            System.out.println("--------------" + current_sorter.getName() + "--------------");
 
-            // Sorting the arrays
-            for(Integer[] array : integerGenerator.getArrays()) {
-                // Executing maxIterations amount of iterations
-                for(int iteration = 0; iteration < maxIterations; iteration ++) {
-                    // Creating a clone of the original  array
-                    Integer[] arrayClone = array.clone();
+            // Initializing the array that will contain current sorter execution times
+            long[] meanExecutionTime = new long[arraysAmount];
+
+            // Iterating all the data arrays
+            for(int j = 0; j < arraysAmount; j ++){
+                // Sorting the array an arbitrary N (maxIterations) amount of times
+                for(int iteration = 0; iteration < maxIterations; iteration++) {
+                    // Cloning the current array
+                    Integer[] arrayClone = integerGenerator.getArrays().get(j).clone();
                     // Collecting time pre execution
                     final long pre_exec_time = System.nanoTime();
                     // Sorting array
                     current_sorter.sort(arrayClone);
                     // Collecting time post execution
-                    final long difference = System.nanoTime() - pre_exec_time;
+                    final long currentExecutionTime = System.nanoTime() - pre_exec_time;
                     // Adding the execution time to the total
-                    meanExecutionTime[i] += difference;
+                    meanExecutionTime[j] += currentExecutionTime;
                     // Printing current iterations stats
                     System.out.println("Array size: " + arrayClone.length
-                            + " - Execution time: " + difference + " ns"
-                            + " - Iteration: " + iteration);
+                            + " - Execution time: " + currentExecutionTime + " ns"
+                            + " - Iteration: " + (iteration + 1));
                 }
                 // Computing the average execution time
-                meanExecutionTime[i] = meanExecutionTime[i] / maxIterations;
+                meanExecutionTime[j] = meanExecutionTime[j] / maxIterations;
 
                 // Adding the execution time to the array
-                System.out.println("Array size: " + array.length +
-                        " - Average execution time: " + meanExecutionTime[i] + " ns");
-                System.out.println();
+                System.out.println("Array size: " + integerGenerator.getArrays().get(j).length +
+                        " - Average execution time: " + meanExecutionTime[j] + " ns");
+
+                // Saving the execution times
+                executionTimes.add(meanExecutionTime);
             }
-            // Printing a new line between sorting algorithms
-            System.out.println();
             System.out.println();
         }
     };
