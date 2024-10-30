@@ -1,5 +1,9 @@
-public final class BubbleSortUntilNoChange<T extends Comparable<T>> implements Sorter<T> {
-	
+public final class BubbleSortUntilNoChange<T extends Comparable<T>> extends Sorter<T> {
+
+	BubbleSortUntilNoChange () {
+		this.name = "BubbleSortUntilNoChange";
+	}
+
 	public void sort(final T[] items) {
 		boolean changed;
 		do {

@@ -1,5 +1,9 @@
-public final class SelectionSortGPT<T extends Comparable<T>> implements Sorter<T> {
-	
+public final class SelectionSortGPT<T extends Comparable<T>> extends Sorter<T> {
+
+    SelectionSortGPT () {
+        this.name = "SelectionSortGPT";
+    }
+
 	public void sort(final T[] items) {
 		if (items == null || items.length == 0) {
             return; 
