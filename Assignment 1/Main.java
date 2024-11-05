@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Random;
 import java.util.Vector;
 
@@ -58,10 +59,6 @@ public class Main {
                     final long currentExecutionTime = System.nanoTime() - pre_exec_time;
                     // Adding the execution time to the total
                     meanExecutionTime[j] += currentExecutionTime;
-                    // Printing current iterations stats
-//                    System.out.println("Array size: " + arrayClone.length
-//                            + " - Execution time: " + currentExecutionTime + " ns"
-//                            + " - Iteration: " + (iteration + 1));
                 }
                 // Computing the average execution time
                 meanExecutionTime[j] = meanExecutionTime[j] / maxIterations;
@@ -80,7 +77,7 @@ public class Main {
     /**
      * Function that generates the data using Integer type
      */
-    private static void createIntegerData() {
+    private static void createIntegerExecutionData() {
         // Initializing generic auxiliary variables
         Random rand = new Random();
 
@@ -114,7 +111,7 @@ public class Main {
         generateExecutionTime(integerGenerator, "Integer");
     };
 
-    private static void createCharacterData() {
+    private static void createCharacterExecutionData() {
         // Initializing generic auxiliary variables
         Random rand = new Random();
 
@@ -126,7 +123,8 @@ public class Main {
         };
 
         // Initializing the vector initializer
-        VectorInitializer<Character []> charactersVectorInitializer = (int arraysAmount, int arraysStartingSize, int arraysGrow) -> {
+        VectorInitializer<Character []> charactersVectorInitializer =
+                (int arraysAmount, int arraysStartingSize, int arraysGrow) -> {
             // Initializing the array
             Vector<Character []> arrays = new Vector<>(arraysAmount);
 
@@ -145,12 +143,55 @@ public class Main {
         generateExecutionTime(charactersGenerator, "Character");
     }
 
+    private static void createDatesExecutionData(){
+        // Initializing generic auxiliary variables
+        Random rand = new Random();
+
+        // Initializing the data initializer
+        ArrayInitializer<Date> datesArrayInitializer = (Date[] array) -> {
+            // Filling the array with random variables
+            for (int i = 0; i < array.length; i++ ){
+                // Initializing auxiliary variables
+                long randomMilliseconds;
+
+                // Get an Epoch value roughly between 1940 and 2010
+                // -946771200000L = January 1, 1940
+                // Add up to 70 years to it (using modulus on the next long)
+                randomMilliseconds = -946771200000L + (Math.abs(rand.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000));
+
+                // Construct a date
+                array[i] = new Date(randomMilliseconds);
+            }
+        };
+
+        // Initializing the vector initializer
+        VectorInitializer<Date []> datesVectorInitializer =
+                (int arraysAmount, int arraysStartingSize, int arraysGrow) -> {
+            // Initializing the array
+            Vector<Date []> arrays = new Vector<>(arraysAmount);
+
+            // Adding j array of type Integer, starting with size 100 and increasing by power of 10 each iteration
+            for(int i = arraysStartingSize, j = 0; j < arraysAmount; i *= arraysGrow, j++)
+                arrays.add(new Date[i]);
+
+            return arrays;
+        };
+
+        // Creating the Data Generator of type Integer
+        DataGenerator<Date> charactersGenerator =
+                new DataGenerator<>(datesVectorInitializer, datesArrayInitializer);
+
+        // Generating the execution time
+        generateExecutionTime(charactersGenerator, "Date");
+    }
+
     /**
      * Main function
      * @param args Arguments provided by command lines
      */
     public static void main(String[] args){
-        createIntegerData();
-        createCharacterData();
+        createIntegerExecutionData();
+        createCharacterExecutionData();
+        createDatesExecutionData();
     }
 }
