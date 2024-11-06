@@ -14,13 +14,14 @@ public class Main {
     private static <T extends Comparable<T>> void generateExecutionTime(DataGenerator<T> generator, String typeName) {
         // Auxiliary data
         int arraysAmount = generator.getArraysAmount();
-        int maxIterations = 2;
+        int maxIterations = 50;
 
         // Printing the current data type
         System.out.println("-------------- " + typeName + " --------------\n");
 
         // Initializing a vector containing the mean execution time for each sorter for each data size
-        Vector<long[]> executionTimes = new Vector<>(arraysAmount);
+        Vector<long[]> unsortedExecutionTimes = new Vector<>(arraysAmount);
+        Vector<long[]> sortedExecutionTimes = new Vector<>(arraysAmount);
 
         // Initializing the vector of sorters
         Vector<Sorter> sorters = new Vector<>(generator.getArraysAmount());
@@ -43,7 +44,8 @@ public class Main {
             System.out.println(current_sorter.getName());
 
             // Initializing the array that will contain current sorter execution times
-            long[] meanExecutionTime = new long[arraysAmount];
+            long[] meanUnsortedExecutionTime = new long[arraysAmount];
+            long[] meanSortedExecutionTime = new long[arraysAmount];
 
             // Iterating all the data arrays
             for(int j = 0; j < arraysAmount; j ++){
@@ -52,23 +54,38 @@ public class Main {
                     // Cloning the current array
                     T[] arrayClone = generator.getArrays().get(j).clone();
                     // Collecting time pre execution
-                    final long pre_exec_time = System.nanoTime();
+                    long pre_exec_time = System.nanoTime();
                     // Sorting array
                     current_sorter.sort(arrayClone);
                     // Collecting time post execution
-                    final long currentExecutionTime = System.nanoTime() - pre_exec_time;
+                    final long currentUnsortedExecutionTime = System.nanoTime() - pre_exec_time;
                     // Adding the execution time to the total
-                    meanExecutionTime[j] += currentExecutionTime;
+                    meanUnsortedExecutionTime[j] += currentUnsortedExecutionTime;
+
+                    // Sorting the already sorted array
+                    pre_exec_time = System.nanoTime();
+                    // Sorting array
+                    current_sorter.sort(arrayClone);
+                    // Collecting time post execution
+                    final long currentSortedExecutionTime = System.nanoTime() - pre_exec_time;
+                    // Adding the execution time to the total
+                    meanSortedExecutionTime[j] += currentSortedExecutionTime;
                 }
                 // Computing the average execution time
-                meanExecutionTime[j] = meanExecutionTime[j] / maxIterations;
+                meanUnsortedExecutionTime[j] = meanUnsortedExecutionTime[j] / maxIterations;
+                meanSortedExecutionTime[j] = meanSortedExecutionTime[j] / maxIterations;
 
                 // Adding the execution time to the array
                 System.out.println("Array size: " + generator.getArrays().get(j).length +
-                        " - Average execution time: " + meanExecutionTime[j] + " ns");
+                        " - Mean RANDOM execution time: " + meanUnsortedExecutionTime[j] + " ns");
+                // Adding the execution time to the array
+                System.out.println("Array size: " + generator.getArrays().get(j).length +
+                        " - Mean SORTED execution time: " + meanSortedExecutionTime[j] + " ns");
+                System.out.println();
 
                 // Saving the execution times
-                executionTimes.add(meanExecutionTime);
+                unsortedExecutionTimes.add(meanUnsortedExecutionTime);
+                sortedExecutionTimes.add(meanSortedExecutionTime);
             }
             System.out.println();
         }
