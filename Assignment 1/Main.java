@@ -14,7 +14,8 @@ public class Main {
     private static <T extends Comparable<T>> void generateExecutionTime(DataGenerator<T> generator, String typeName) {
         // Auxiliary data
         int arraysAmount = generator.getArraysAmount();
-        int maxIterations = 50;
+        int maxIterations = 180;
+        int outliners_threshold = 30;
 
         // Printing the current data type
         System.out.println("-------------- " + typeName + " --------------\n");
@@ -60,7 +61,8 @@ public class Main {
                     // Collecting time post execution
                     final long currentUnsortedExecutionTime = System.nanoTime() - pre_exec_time;
                     // Adding the execution time to the total
-                    meanUnsortedExecutionTime[j] += currentUnsortedExecutionTime;
+                    if(iteration >= outliners_threshold)
+                        meanUnsortedExecutionTime[j] += currentUnsortedExecutionTime;
 
                     // Sorting the already sorted array
                     pre_exec_time = System.nanoTime();
@@ -69,11 +71,12 @@ public class Main {
                     // Collecting time post execution
                     final long currentSortedExecutionTime = System.nanoTime() - pre_exec_time;
                     // Adding the execution time to the total
-                    meanSortedExecutionTime[j] += currentSortedExecutionTime;
+                    if(iteration >= outliners_threshold)
+                        meanSortedExecutionTime[j] += currentSortedExecutionTime;
                 }
                 // Computing the average execution time
-                meanUnsortedExecutionTime[j] = meanUnsortedExecutionTime[j] / maxIterations;
-                meanSortedExecutionTime[j] = meanSortedExecutionTime[j] / maxIterations;
+                meanUnsortedExecutionTime[j] = meanUnsortedExecutionTime[j] / (maxIterations - outliners_threshold);
+                meanSortedExecutionTime[j] = meanSortedExecutionTime[j] / (maxIterations - outliners_threshold);
 
                 // Adding the execution time to the array
                 System.out.println("Array size: " + generator.getArrays().get(j).length +
