@@ -1,0 +1,20 @@
+{
+  "name": "EE Project 2 - Backend",
+  "version": "1.0.0",
+  "description": "Backend for the Experimentation & Evaluations Course - Project 2",
+  "main": "index.js",
+  "author": "Guglielmo Mazzesi",
+  "scripts": {
+          "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuglielmoMazzesiDaniele/EE-Assignment1.git"
+  },
+  "dependencies": {
+    "mongodb": "~6.11.0",
+    "express": "~4.21.1"
+  },
+  "private": true
+}
