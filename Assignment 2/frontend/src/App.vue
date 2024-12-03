@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="common-layout">
-    <el-container>
-      <el-aside width="200px">
-<!--    Empty aside for layout    -->
-      </el-aside>
-      <el-container>
+    <div class="sidebar">
+      <!--      Fake left part (for layout)-->
+    </div>
+    <div id="main">
+
       <el-header>
         <h1>Welcome to the App</h1>
       </el-header>
@@ -22,11 +22,12 @@
           <h1>Thank you for completing the steps!</h1>
         </div>
       </el-main>
-      </el-container>
-      <el-aside width="200px">
-        <!--    Empty aside for layout    -->
-      </el-aside>
-    </el-container>
+
+    </div>
+    <div class="sidebar">
+<!--      Fake right part -->
+    </div>
+
   </div>
 </template>
 
@@ -64,10 +65,28 @@ export default {
 </script>
 
 <style>
+.el-header {
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+}
+.el-main {
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  text-align: center; /* Center text */
+}
 #app {
-  display: flex;             /* Enable flexbox */
-  justify-content: center;   /* Center horizontally */
-  align-items: center;       /* Center vertically */
-  text-align: center;        /* Center text */
+    display: flex;
+    width: 100vw;
+    border: 1px solid black;
+    height: 80vh;
+
+}
+
+
+.sidebar {
+  border: 1px solid red;
+  width: 25vw;
 }
 </style>
