@@ -3,20 +3,22 @@ var kebab_current_index = 0;
 var camel_current_index = 0;
 var statistics = [];
 
-// Function that shuffles a given array, used to randomize the buttons
-function shuffleArray(array) {
-    for (var i = array.length - 1; i >= 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-}
-
 // Function that clear the question container
 
 // Given a target container and a kebab-case sample, creates buttons and load them into the container
 function loadExperimentQuestion(type){
+    // Verifying if the experiments is over
+    if(kebab_current_index === kebab_samples.length && camel_current_index === kebab_samples.length){
+        // Disabling the experiment
+        document.getElementById("experiment-container").style.display = "none";
+        // Enabling the download section
+        document.getElementById("download-container").style.display = "block";
+        // Creating the CSV
+        generateCSV()
+        // Leaving the current function
+        return;
+    }
+
     // Clearing the options container
     let optionsContainer = document.getElementById("experiment-options")
     optionsContainer.innerHTML = "";
@@ -104,6 +106,45 @@ function loadExperimentQuestion(type){
     })
 }
 
-// Given a target container and a camelCase sample, creates buttons and load them into the container
-function loadCamelQuestion(){
+// Function that shuffles a given array, used to randomize the buttons
+function shuffleArray(array) {
+    for (var i = array.length - 1; i >= 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+// Function that generates a csv from the statistics of the experiment
+function generateCSV(filename = 'data.csv') {
+    // Check if the data array is not empty
+    if (!statistics || !statistics.length) {
+        console.error('No data to generate CSV.');
+        return;
+    }
+
+    // Extract headers
+    const headers = Object.keys(statistics[0]);
+
+    // Map the data array into CSV rows
+    const rows = statistics.map(obj =>
+        headers.map(header => JSON.stringify(obj[header] || '')).join(',')
+    );
+
+    // Combine headers and rows into a CSV string
+    const csvContent = [headers.join(','), ...rows].join('\n');
+
+    // Create a Blob object
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Obtaining the link to download
+    const link = document.getElementById('download-link');
+    // Setting the text
+    link.textContent = "here"
+    // Creating the URL object
+    const url = URL.createObjectURL(blob);
+    // Setting the downloadable Blob
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
 }
