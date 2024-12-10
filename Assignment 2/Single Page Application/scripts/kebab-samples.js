@@ -1,52 +1,52 @@
 const kebab_samples = [
     {
-        original: "move south",
-        correct: "move-south",
-        distractors: ["move-source", "more-south", "mover-sound"]
+        original: "color lists",
+        correct: "color-lists",
+        distractors: ["colar-lists", "colour-lists", "calory-lists"]
     },
     {
-        original: "jump high",
-        correct: "jump-high",
-        distractors: ["jump-hike", "jumps-high", "jump-height"]
+        original: "vector space",
+        correct: "vector-space",
+        distractors: ["vector-spaces", "vectar-space", "vector-map"]
     },
     {
-        original: "read book",
-        correct: "read-book",
-        distractors: ["red-book", "read-books", "reed-book"]
+        original: "websites explored",
+        correct: "websites-explored",
+        distractors: ["explared-websites", "explored-sites", "explored-website"]
     },
     {
-        original: "build house",
-        correct: "build-house",
-        distractors: ["build-hose", "built-house", "builder-house"]
+        original: "seen so far",
+        correct: "seen-so-far",
+        distractors: ["sean-so-far", "seen-sa-far", "seen-by-far", "seen-si-far"]
     },
     {
-        original: "catch fish",
-        correct: "catch-fish",
-        distractors: ["catch-fist", "catched-fish", "catch-files"]
+        original: "logged in members",
+        correct: "logged-in-members",
+        distractors: ["lagged-in-members", "logged-in-member", "loged-in-member"]
     },
     {
-        original: "find treasure",
-        correct: "find-treasure",
-        distractors: ["find-treasury", "fined-treasure", "find-treasures"]
+        original: "build new city center",
+        correct: "build-new-city-center",
+        distractors: ["build-nw-city-center", "build-naw-city-canter", "build-new-coty-center"]
     },
     {
-        original: "run fast",
-        correct: "run-fast",
-        distractors: ["ran-fast", "run-fastly", "run-fats"]
+        original: "renovated buildings",
+        correct: "renovated-buildings",
+        distractors: ["rennovated-buildings", "renovated-building", "renovvated-building"]
     },
     {
-        original: "fly high",
-        correct: "fly-high",
-        distractors: ["fly-height", "fly-eight", "fly-highs"]
+        original: "create new bounding box",
+        correct: "create-new-bounding-box",
+        distractors: ["crate-new-bounding-box", "croate-new-bounding-box", "create-new-bounding-boxes"]
     },
     {
-        original: "dig deep",
-        correct: "dig-deep",
-        distractors: ["dig-deeps", "dig-dept", "dug-deep"]
+        original: "recorded uninterested members",
+        correct: "recorded-uninterested-members",
+        distractors: ["registered-uninterested-members", "recorded-uninterested-member", "recorded-uninterested-mambers"]
     },
     {
-        original: "sing loud",
-        correct: "sing-loud",
-        distractors: ["sing-lout", "sing-loudly", "sang-loud"]
+        original: "breadth first search",
+        correct: "breadth-first-search",
+        distractors: ["brodth-first-search", "bridth-first-sorch", "breadth-first-serach"]
     }
 ];

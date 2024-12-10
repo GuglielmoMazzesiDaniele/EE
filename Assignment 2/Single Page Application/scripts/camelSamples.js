@@ -1,52 +1,52 @@
-const camel_samples = [
+const camel_samples  = [
     {
-        original: "move south",
-        correct: "moveSouth",
-        distractors: ["moveSource", "moreSouth", "moverSound"]
+        original: "collected urls",
+        correct: "collectedUrls",
+        distractors: ["colectedUrls", "collectedURLS", "collectedUrl"]
     },
     {
-        original: "jump high",
-        correct: "jumpHigh",
-        distractors: ["jumpHike", "jumpsHigh", "jumpHeight"]
+        original: "software checked",
+        correct: "softwareChecked",
+        distractors: ["softwareCheked", "softwareCkecked", "softwareChequed"]
     },
     {
-        original: "read book",
-        correct: "readBook",
-        distractors: ["redBook", "readBooks", "reedBook"]
+        original: "convex hull",
+        correct: "convexHull",
+        distractors: ["convexHul", "conveHull", "convexHulls"]
     },
     {
-        original: "build house",
-        correct: "buildHouse",
-        distractors: ["buildHose", "builtHouse", "builderHouse"]
+        original: "viewed by now",
+        correct: "viewedByNow",
+        distractors: ["viewdByNow", "viewedNow", "viewedByNaw"]
     },
     {
-        original: "catch fish",
-        correct: "catchFish",
-        distractors: ["catchFist", "catchedFish", "catchFiles"]
+        original: "inactive members now",
+        correct: "inactiveMembersNow",
+        distractors: ["inactivMembersNow", "inactiveMemberNow", "inactiveMembarsNow"]
     },
     {
-        original: "find treasure",
-        correct: "findTreasure",
-        distractors: ["findTreasury", "finedTreasure", "findTreasures"]
+        original: "updated stations",
+        correct: "updatedStations",
+        distractors: ["updatdStations", "updatedStation", "updateStations"]
     },
     {
-        original: "run fast",
-        correct: "runFast",
-        distractors: ["ranFast", "runFastly", "runFats"]
+        original: "build new dental center",
+        correct: "buildNewDentalCenter",
+        distractors: ["buldNewDentalCenter", "buildNwDentalCenter", "buildNewDentelCenter"]
     },
     {
-        original: "fly high",
-        correct: "flyHigh",
-        distractors: ["flyHeight", "flyEight", "flyHighs"]
+        original: "create new limiting box",
+        correct: "createNewLimitingBox",
+        distractors: ["crateNewLimitingBox", "createNewLimitingBok", "creatNewLimitingBox"]
     },
     {
-        original: "dig deep",
-        correct: "digDeep",
-        distractors: ["digDeeps", "digDept", "dugDeep"]
+        original: "registered unsubscribed customers",
+        correct: "registeredUnsubscribedCustomers",
+        distractors: ["registerdUnsubscribedCustomers", "registeredUnsubscribeCustomers", "registeredUnsubscriedCustomers"]
     },
     {
-        original: "sing loud",
-        correct: "singLoud",
-        distractors: ["singLout", "singLoudly", "sangLoud"]
+        original: "depth first search",
+        correct: "depthFirstSearch",
+        distractors: ["dephtFirstSearch", "depthFirstSerch", "depthFristSearch"]
     }
 ];
