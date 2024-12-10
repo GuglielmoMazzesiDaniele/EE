@@ -1,11 +1,23 @@
-// Auxiliary flags
-var kebab_example_flag = false;
-var camel_example_flag = false;
-
 // Variables regarding the user
 var age = -1;
 var english_proficiency;
 var coding_proficiency;
+
+// Constant kebab-case sample used in the demonstration
+const kebab_example_sample = {
+    original: "paint wall",
+    correct: "paint-wall",
+    distractors: ["paint-well", "painter-wall", "paint-walls"],
+    type: "kebab"
+}
+
+// Constant camelCase sample used in the demonstration
+const camel_example_sample = {
+    original: "paint wall",
+    correct: "paintWall",
+    distractors: ["paintWell", "painterWall", "paintWalls"],
+    type: "camel"
+}
 
 // Function that loads the examples questions
 function loadExampleQuestion(targetContainer, sample){
@@ -22,15 +34,19 @@ function loadExampleQuestion(targetContainer, sample){
         correct_button.style.background = "green";
 
         // Flagging the correct response
-        if(sample.type === "kebab")
-            kebab_example_flag = true;
-        else
-            camel_example_flag = true;
-
-        // Verifying if the user can start the experiment
-        if(kebab_example_flag == true && camel_example_flag == true) {
+        if(sample.type === "kebab"){
+            // Hiding the kebab example
+            document.getElementById("example-kebab-container").style.display = "none";
+            // Showing the camel case example
+            document.getElementById("example-camel-container").style.display = "block";
+            // Showing filling the options container
+            loadExampleQuestion(document.getElementById("camel-example"), camel_example_sample);
+        }
+        else{
+            // Hiding the kebab example
+            document.getElementById("example-camel-container").style.display = "none";
+            // Showing the camel case example
             document.getElementById("form-container").style.display = "block";
-            document.getElementById("examples-container").style.display = "none";
         }
     })
     // Pushing the button
@@ -75,7 +91,7 @@ function storeUserInformation(){
 // Function that initialize the experiment
 function startExperiment() {
     // Disabling the introduction
-    document.getElementById("rules-container").style.display = "none";
+    document.getElementById("form-container").style.display = "none";
     // Enabling the experiment
     document.getElementById("experiment-container").style.display = "block";
 
@@ -91,31 +107,20 @@ function startExperiment() {
 
 // Execute function on load
 document.addEventListener("DOMContentLoaded", () => {
-    // Constant kebab-case sample used in the demonstration
-    const kebab_example_sample = {
-        original: "paint wall",
-        correct: "paint-wall",
-        distractors: ["paint-well", "painter-wall", "paint-walls"],
-        type: "kebab"
-    }
-
-    // Constant camelCase sample used in the demonstration
-    const camel_example_sample = {
-        original: "paint wall",
-        correct: "paintWall",
-        distractors: ["paintWell", "painterWall", "paintWalls"],
-        type: "camel"
-    }
 
     // Shuffling the samples
     shuffleArray(kebab_samples)
     shuffleArray(camel_samples)
 
-    // Loading the kebab options
-    loadExampleQuestion(document.getElementById("kebab-example"), kebab_example_sample);
-
-    // Loading the camel options
-    loadExampleQuestion(document.getElementById("camel-example"), camel_example_sample);
+    // Adding the listeners to the start demonstration button
+    document.getElementById("start-demonstration").addEventListener("click", () => {
+        // Hiding the explanation
+        document.getElementById("rules-container").style.display = "none";
+        // Showing the kebab case example
+        document.getElementById("example-kebab-container").style.display = "block";
+        // Showing filling the options container
+        loadExampleQuestion(document.getElementById("kebab-example"), kebab_example_sample);
+    })
 
     // Binding the start button with the corresponding function
     document.getElementById("start-button").addEventListener("click", startExperiment);
