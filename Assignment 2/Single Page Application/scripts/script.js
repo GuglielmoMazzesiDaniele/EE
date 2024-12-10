@@ -62,8 +62,9 @@ function loadExperimentQuestion(type){
         button.addEventListener("click", () => {
             // Changing the background red
             button.style.background = "red";
-            // Disabling the button
-            button.disabled = true;
+            setTimeout(() => {
+                button.style.background = "#007bff";
+            }, 750, )
             // Increasing the amount of errors
             current_statistics.errors++;
         })

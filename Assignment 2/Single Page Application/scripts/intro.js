@@ -61,6 +61,9 @@ function loadExampleQuestion(targetContainer, sample){
         // Binding a listener
         button.addEventListener("click", () => {
             button.style.background = "red";
+            setTimeout(() => {
+                button.style.background = "#007bff";
+            }, 750, )
         })
         buttons.push(button);
     })
