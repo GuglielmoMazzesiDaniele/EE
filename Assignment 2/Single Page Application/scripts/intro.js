@@ -2,6 +2,11 @@
 var kebab_example_flag = false;
 var camel_example_flag = false;
 
+// Variables regarding the user
+var age = -1;
+var english_proficiency;
+var coding_proficiency;
+
 // Function that loads the examples questions
 function loadExampleQuestion(targetContainer, sample){
     // Initializing the buttons
@@ -23,8 +28,10 @@ function loadExampleQuestion(targetContainer, sample){
             camel_example_flag = true;
 
         // Verifying if the user can start the experiment
-        if(kebab_example_flag == true && camel_example_flag == true)
-            document.getElementById("start-container").style.display = "block";
+        if(kebab_example_flag == true && camel_example_flag == true) {
+            document.getElementById("form-container").style.display = "block";
+            document.getElementById("examples-container").style.display = "none";
+        }
     })
     // Pushing the button
     buttons.push(correct_button);
@@ -51,14 +58,35 @@ function loadExampleQuestion(targetContainer, sample){
     })
 }
 
+// Function that store the information input using the form
+function storeUserInformation(){
+    // Get form values
+    age = document.getElementById("form-age").value;
+    english_proficiency = document.getElementById("form-english-proficiency").value;
+    coding_proficiency = document.getElementById("form-coding-proficiency").value;
+
+    // Disabling the form button
+    document.getElementById("form-button").disabled = true;
+
+    // Displaying the start button
+    document.getElementById("start-container").style.display = "block";
+}
+
 // Function that initialize the experiment
 function startExperiment() {
     // Disabling the introduction
     document.getElementById("rules-container").style.display = "none";
     // Enabling the experiment
     document.getElementById("experiment-container").style.display = "block";
-    // Loading the first question
-    loadExperimentQuestion("kebab")
+
+    // Generating a random number to decide if to start with kebab or camel
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    // Loading the first question (50% starting from kebab, 50% starting from camel)
+    if(randomNumber <= 5)
+        loadExperimentQuestion("kebab")
+    else
+        loadExperimentQuestion("camel")
 }
 
 // Execute function on load

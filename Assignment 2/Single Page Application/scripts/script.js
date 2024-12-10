@@ -89,10 +89,18 @@ function loadExperimentQuestion(type){
         // Pushing the statistics
         statistics.push(current_statistics);
         // Loading the next question
-        if(type === "kebab")
-            setTimeout(loadExperimentQuestion("camel"), 1500)
-        else
-            setTimeout(loadExperimentQuestion("kebab"), 1500)
+        if(type === "kebab"){
+            if(kebab_current_index === kebab_samples.length)
+                setTimeout(loadExperimentQuestion("camel"), 1500)
+            else
+                setTimeout(loadExperimentQuestion("kebab"), 1500)
+        }
+        else {
+            if (camel_current_index === camel_samples.length)
+                setTimeout(loadExperimentQuestion("kebab"), 1500)
+            else
+                setTimeout(loadExperimentQuestion("camel"), 1500)
+        }
     })
     // Pushing the button
     buttons.push(correct_button);
@@ -127,10 +135,19 @@ function generateCSV(filename = 'data.csv') {
     // Extract headers
     const headers = Object.keys(statistics[0]);
 
+    // Append form data headers
+    headers.push('Age', 'English Proficiency', 'Coding Proficiency');
+
     // Map the data array into CSV rows
-    const rows = statistics.map(obj =>
-        headers.map(header => JSON.stringify(obj[header] || '')).join(',')
-    );
+    const rows = statistics.map(obj => {
+        const row = headers.map(header => {
+            if (header === 'Age') return JSON.stringify(age || '');
+            if (header === 'English Proficiency') return JSON.stringify(english_proficiency || '');
+            if (header === 'Coding Proficiency') return JSON.stringify(coding_proficiency || '');
+            return JSON.stringify(obj[header] || '');
+        });
+        return row.join(',');
+    });
 
     // Combine headers and rows into a CSV string
     const csvContent = [headers.join(','), ...rows].join('\n');
