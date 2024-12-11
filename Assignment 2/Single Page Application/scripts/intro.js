@@ -2,6 +2,7 @@
 var age = -1;
 var english_proficiency;
 var coding_proficiency;
+var dyslexia;
 
 // Constant kebab-case sample used in the demonstration
 const kebab_example_sample = {
@@ -83,6 +84,7 @@ function storeUserInformation(){
     age = document.getElementById("form-age").value;
     english_proficiency = document.getElementById("form-english-proficiency").value;
     coding_proficiency = document.getElementById("form-coding-proficiency").value;
+    dyslexia = document.getElementById("form-dyslexia").value;
 
     // Disabling the form button
     document.getElementById("form-button").disabled = true;
