@@ -58,7 +58,7 @@
             <label for="age">Age:</label>
             <input type="number" id="form-age" name="age" min="1" max="120" required>
             <br><br>
-            <label for="english-proficiency">English Reading Proficiency:</label>
+            <label for="form-english-proficiency">English Reading Proficiency:</label>
             <select id="form-english-proficiency" name="english_proficiency" required>
                 <option value="" disabled selected>Select your proficiency</option>
                 <option value="beginner">Beginner</option>
@@ -67,7 +67,7 @@
                 <option value="native">Native Speaker</option>
             </select>
             <br><br>
-            <label for="coding-proficiency">Coding Proficiency:</label>
+            <label for="form-coding-proficiency">Coding Proficiency:</label>
             <select id="form-coding-proficiency" name="coding_proficiency" required>
                 <option value="" disabled selected>Select your proficiency</option>
                 <option value="none">None</option>
@@ -76,12 +76,20 @@
                 <option value="advanced">Advanced</option>
                 <option value="expert">Expert</option>
             </select>
-            <label for="coding-proficiency">Are you dyslexic?</label>
+            <br><br>
+            <label for="form-dyslexia">Are you dyslexic?</label>
             <select id="form-dyslexia" name="dyslexia" required>
                 <option value="" disabled selected>Pick an option:</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
                 <option value="not_sure">Not sure</option>
+            </select>
+            <br><br>
+            <label for="form-mouse">Are you using a mouse or a touchpad?</label>
+            <select id="form-mouse" name="mouse" required>
+                <option value="" disabled selected>Pick an option:</option>
+                <option value="mouse">Mouse</option>
+                <option value="touchpad">Touchpad</option>
             </select>
             <br><br>
             <button id="form-button" type="submit">Submit</button>

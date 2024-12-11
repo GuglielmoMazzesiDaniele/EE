@@ -137,7 +137,7 @@ function generateCSV(filename = 'data.csv') {
     const headers = Object.keys(statistics[0]);
 
     // Append form data headers
-    headers.push('Age', 'English Proficiency', 'Coding Proficiency', 'Dyslexia');
+    headers.push('Age', 'English Proficiency', 'Coding Proficiency', 'Dyslexia', 'Input Device');
 
     // Map the data array into CSV rows
     const rows = statistics.map(obj => {
@@ -146,6 +146,7 @@ function generateCSV(filename = 'data.csv') {
             if (header === 'English Proficiency') return JSON.stringify(english_proficiency || '');
             if (header === 'Coding Proficiency') return JSON.stringify(coding_proficiency || '');
             if (header === 'Dyslexia') return JSON.stringify(dyslexia || '');
+            if (header === 'Input Device') return JSON.stringify(mouse || '');
             return JSON.stringify(obj[header] || '');
         });
         return row.join(',');
