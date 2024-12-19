@@ -1,0 +1,17 @@
+Age,English Proficiency,Coding Proficiency,Dyslexia,Input Device,Participant,Group
+27,advanced,none,no,touchpad,1,B
+26,advanced,beginner,no,mouse,2,A
+24,advanced,beginner,no,mouse,3,A
+23,advanced,intermediate,no,mouse,4,A
+28,advanced,intermediate,not_sure,mouse,5,B
+23,advanced,intermediate,no,mouse,6,B
+23,advanced,advanced,not_sure,touchpad,7,B
+28,intermediate,advanced,no,mouse,8,A
+22,advanced,intermediate,no,touchpad,9,A
+19,native,advanced,no,touchpad,10,B
+22,advanced,intermediate,no,touchpad,11,A
+22,native,advanced,no,mouse,12,B
+39,advanced,expert,no,mouse,13,B
+26,advanced,expert,no,touchpad,14,B
+23,native,intermediate,no,touchpad,15,B
+21,advanced,advanced,yes,touchpad,16,A
